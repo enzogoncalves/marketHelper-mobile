@@ -1,7 +1,9 @@
 abstract class AuthEvent {}
 
-class AuthSigninRequestedEvent extends AuthEvent {
-  AuthSigninRequestedEvent({
+class AuthDefaultEvent extends AuthEvent {}
+
+class AuthRegisterRequestedEvent extends AuthEvent {
+  AuthRegisterRequestedEvent({
     required this.email,
     required this.password,
   });
@@ -9,3 +11,17 @@ class AuthSigninRequestedEvent extends AuthEvent {
   final String email;
   final String password;
 }
+
+class AuthSignInRequestedEvent extends AuthEvent {
+  AuthSignInRequestedEvent({
+    required this.email,
+    required this.password,
+  });
+
+  final String email;
+  final String password;
+}
+
+class AuthRedirectToRegisterPageEvent extends AuthEvent {}
+
+class AuthRedirectToSignInPageEvent extends AuthEvent {}

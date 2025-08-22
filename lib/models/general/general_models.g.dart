@@ -6,11 +6,13 @@ part of 'general_models.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_MarketHelperGeneralResponse _$MarketHelperGeneralResponseFromJson(
+_MarketHelperGeneralResponse<T> _$MarketHelperGeneralResponseFromJson<T>(
   Map<String, dynamic> json,
-) => _MarketHelperGeneralResponse(
+  T Function(Object? json) fromJsonT,
+) => _MarketHelperGeneralResponse<T>(
   message: json['message'] as String,
-  data: json['data'] as Map<String, dynamic>,
+  success: json['success'] as bool,
+  data: _$nullableGenericFromJson(json['data'], fromJsonT),
   error:
       json['error'] == null
           ? null
@@ -19,26 +21,36 @@ _MarketHelperGeneralResponse _$MarketHelperGeneralResponseFromJson(
           ),
 );
 
-Map<String, dynamic> _$MarketHelperGeneralResponseToJson(
-  _MarketHelperGeneralResponse instance,
+Map<String, dynamic> _$MarketHelperGeneralResponseToJson<T>(
+  _MarketHelperGeneralResponse<T> instance,
+  Object? Function(T value) toJsonT,
 ) => <String, dynamic>{
   'message': instance.message,
-  'data': instance.data,
-  'error': instance.error?.toJson(),
+  'success': instance.success,
+  'data': _$nullableGenericToJson(instance.data, toJsonT),
+  'error': instance.error,
 };
+
+T? _$nullableGenericFromJson<T>(
+  Object? input,
+  T Function(Object? json) fromJson,
+) => input == null ? null : fromJson(input);
+
+Object? _$nullableGenericToJson<T>(
+  T? input,
+  Object? Function(T value) toJson,
+) => input == null ? null : toJson(input);
 
 _MarketHelperGeneralErrorResponse _$MarketHelperGeneralErrorResponseFromJson(
   Map<String, dynamic> json,
 ) => _MarketHelperGeneralErrorResponse(
-  code: json['code'] as String,
+  statusCode: (json['statusCode'] as num).toInt(),
   type: json['type'] as String,
-  details: json['details'] as Map<String, dynamic>?,
 );
 
 Map<String, dynamic> _$MarketHelperGeneralErrorResponseToJson(
   _MarketHelperGeneralErrorResponse instance,
 ) => <String, dynamic>{
-  'code': instance.code,
+  'statusCode': instance.statusCode,
   'type': instance.type,
-  'details': instance.details,
 };

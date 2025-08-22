@@ -3,32 +3,28 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'general_models.freezed.dart';
 part 'general_models.g.dart';
 
-@freezed
-abstract class MarketHelperGeneralResponse
-    with _$MarketHelperGeneralResponse {
-  @JsonSerializable(explicitToJson: true)
+@Freezed(genericArgumentFactories: true)
+abstract class MarketHelperGeneralResponse<T> with _$MarketHelperGeneralResponse<T> {
   const factory MarketHelperGeneralResponse({
     required String message,
-    required Map<String, dynamic> data,
+    required bool success,
+    required T? data,
     MarketHelperGeneralErrorResponse? error,
-  }) = _MarketHelperGeneralResponse;
+  }) = _MarketHelperGeneralResponse<T>;
 
   factory MarketHelperGeneralResponse.fromJson(
     Map<String, dynamic> json,
-  ) => _$MarketHelperGeneralResponseFromJson(json);
+    T Function(Object?) fromJsonT,
+  ) => _$MarketHelperGeneralResponseFromJson(json, fromJsonT);
 }
 
 @freezed
-abstract class MarketHelperGeneralErrorResponse
-    with _$MarketHelperGeneralErrorResponse {
-  @JsonSerializable()
+abstract class MarketHelperGeneralErrorResponse with _$MarketHelperGeneralErrorResponse {
   const factory MarketHelperGeneralErrorResponse({
-    required String code,
+    required int statusCode,
     required String type,
-    Map<String, dynamic>? details,
   }) = _MarketHelperGeneralErrorResponse;
 
-  factory MarketHelperGeneralErrorResponse.fromJson(
-    Map<String, dynamic> json,
-  ) => _$MarketHelperGeneralErrorResponseFromJson(json);
+  factory MarketHelperGeneralErrorResponse.fromJson(Map<String, dynamic> json) =>
+      _$MarketHelperGeneralErrorResponseFromJson(json);
 }

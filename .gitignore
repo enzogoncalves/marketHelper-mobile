@@ -45,3 +45,36 @@ app.*.map.json
 /android/app/release
 
 *.env
+
+# Generated files and directories
+.dart_tool/
+.flutter-plugins-dependencies
+.flutter-plugins
+.packages
+build/
+.idea/
+*.iml
+*.lock
+!pubspec.lock # Keep pubspec.lock for consistent dependency versions in team environments
+
+# Platform-specific generated files
+android/app/src/debug/
+android/app/build/
+android/.gradle/
+ios/Flutter/Generated.xcconfig
+ios/.symlinks/
+ios/Pods/
+ios/.build/
+ios/DerivedData/
+ios/Flutter/App.framework/
+ios/Flutter/Flutter.framework/
+
+# IDE-specific files
+.vscode/
+*.code-workspace
+.DS_Store # macOS specific
+Thumbs.db # Windows specific
+
+# Sensitive information (example)
+.env
+.env.*

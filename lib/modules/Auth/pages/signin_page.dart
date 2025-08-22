@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:markethelper_mobile/blocs/auth/auth_bloc.dart';
 import 'package:markethelper_mobile/blocs/auth/auth_events.dart';
 import 'package:markethelper_mobile/blocs/auth/auth_states.dart';
@@ -19,7 +19,7 @@ class _SignInPageState extends State<SignInPage> {
 
   final _formKey = GlobalKey<FormState>();
 
-  AuthBloc authBloc = GetIt.instance<AuthBloc>();
+  AuthBloc authBloc = Modular.get<AuthBloc>();
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +28,14 @@ class _SignInPageState extends State<SignInPage> {
       body: BlocBuilder<AuthBloc, AuthState>(
         bloc: authBloc,
         builder: (_, state) {
+          if (state is AuthInitialState) {
+            Modular.to.pushReplacementNamed('./register');
+          }
+
+          if (state is AuthSignInSuccessState) {
+            return Center(child: Text('Logado com sucesso!'));
+          }
+
           return Column(
             children: [
               Center(
@@ -36,9 +44,7 @@ class _SignInPageState extends State<SignInPage> {
                   width: 200,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage(
-                        'assets/images/logo-removebg.png',
-                      ),
+                      image: AssetImage('assets/images/logo-removebg.png'),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -46,10 +52,7 @@ class _SignInPageState extends State<SignInPage> {
               ),
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 10,
-                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
@@ -63,17 +66,12 @@ class _SignInPageState extends State<SignInPage> {
                       Column(
                         children: [
                           Text(
-                            'Criar conta',
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.w900,
-                            ),
+                            'Entrar',
+                            style: TextStyle(fontSize: 24, fontWeight: FontWeight.w900),
                           ),
                           Text(
-                            'Crie uma conta para acessar o Market Helper',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                            ),
+                            'Entre com a sua conta para acessar o Market Helper',
+                            style: TextStyle(fontWeight: FontWeight.w500),
                           ),
                           const SizedBox(height: 20),
 
@@ -99,15 +97,10 @@ class _SignInPageState extends State<SignInPage> {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               GestureDetector(
-                                onTap:
-                                    () => {
-                                      print('Esqueceu a senha?'),
-                                    },
+                                onTap: () => {print('Esqueceu a senha?')},
                                 child: Text(
                                   'Esqueceu a senha?',
-                                  style: TextStyle(
-                                    color: Colors.grey.shade600,
-                                  ),
+                                  style: TextStyle(color: Colors.grey.shade600),
                                 ),
                               ),
                             ],
@@ -117,10 +110,9 @@ class _SignInPageState extends State<SignInPage> {
                             onTap:
                                 () => {
                                   authBloc.add(
-                                    AuthSigninRequestedEvent(
+                                    AuthSignInRequestedEvent(
                                       email: _emailController.text,
-                                      password:
-                                          _passwordController.text,
+                                      password: _passwordController.text,
                                     ),
                                   ),
                                 },
@@ -129,9 +121,7 @@ class _SignInPageState extends State<SignInPage> {
 
                               decoration: BoxDecoration(
                                 color: Colors.black,
-                                borderRadius: BorderRadius.circular(
-                                  8,
-                                ),
+                                borderRadius: BorderRadius.circular(8),
                               ),
                               child: Center(
                                 child: Text(
@@ -148,23 +138,21 @@ class _SignInPageState extends State<SignInPage> {
                           const SizedBox(height: 20),
 
                           Row(
-                            mainAxisAlignment:
-                                MainAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
                                 'Não tem uma conta?',
-                                style: TextStyle(
-                                  color: Colors.grey.shade600,
-                                ),
+                                style: TextStyle(color: Colors.grey.shade600),
                               ),
                               const SizedBox(width: 5),
                               GestureDetector(
-                                onTap: () => {print('Cadastre-se')},
+                                onTap:
+                                    () => {
+                                      authBloc.add(AuthRedirectToRegisterPageEvent()),
+                                    },
                                 child: Text(
                                   'Cadastre-se agora',
-                                  style: TextStyle(
-                                    color: Colors.lightBlue,
-                                  ),
+                                  style: TextStyle(color: Colors.lightBlue),
                                 ),
                               ),
                             ],

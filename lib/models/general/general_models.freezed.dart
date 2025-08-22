@@ -13,42 +13,42 @@ part of 'general_models.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-mixin _$MarketHelperGeneralResponse {
+mixin _$MarketHelperGeneralResponse<T> {
 
- String get message; Map<String, dynamic> get data; MarketHelperGeneralErrorResponse? get error;
+ String get message; bool get success; T? get data; MarketHelperGeneralErrorResponse? get error;
 /// Create a copy of MarketHelperGeneralResponse
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$MarketHelperGeneralResponseCopyWith<MarketHelperGeneralResponse> get copyWith => _$MarketHelperGeneralResponseCopyWithImpl<MarketHelperGeneralResponse>(this as MarketHelperGeneralResponse, _$identity);
+$MarketHelperGeneralResponseCopyWith<T, MarketHelperGeneralResponse<T>> get copyWith => _$MarketHelperGeneralResponseCopyWithImpl<T, MarketHelperGeneralResponse<T>>(this as MarketHelperGeneralResponse<T>, _$identity);
 
   /// Serializes this MarketHelperGeneralResponse to a JSON map.
-  Map<String, dynamic> toJson();
+  Map<String, dynamic> toJson(Object? Function(T) toJsonT);
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is MarketHelperGeneralResponse&&(identical(other.message, message) || other.message == message)&&const DeepCollectionEquality().equals(other.data, data)&&(identical(other.error, error) || other.error == error));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MarketHelperGeneralResponse<T>&&(identical(other.message, message) || other.message == message)&&(identical(other.success, success) || other.success == success)&&const DeepCollectionEquality().equals(other.data, data)&&(identical(other.error, error) || other.error == error));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,message,const DeepCollectionEquality().hash(data),error);
+int get hashCode => Object.hash(runtimeType,message,success,const DeepCollectionEquality().hash(data),error);
 
 @override
 String toString() {
-  return 'MarketHelperGeneralResponse(message: $message, data: $data, error: $error)';
+  return 'MarketHelperGeneralResponse<$T>(message: $message, success: $success, data: $data, error: $error)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $MarketHelperGeneralResponseCopyWith<$Res>  {
-  factory $MarketHelperGeneralResponseCopyWith(MarketHelperGeneralResponse value, $Res Function(MarketHelperGeneralResponse) _then) = _$MarketHelperGeneralResponseCopyWithImpl;
+abstract mixin class $MarketHelperGeneralResponseCopyWith<T,$Res>  {
+  factory $MarketHelperGeneralResponseCopyWith(MarketHelperGeneralResponse<T> value, $Res Function(MarketHelperGeneralResponse<T>) _then) = _$MarketHelperGeneralResponseCopyWithImpl;
 @useResult
 $Res call({
- String message, Map<String, dynamic> data, MarketHelperGeneralErrorResponse? error
+ String message, bool success, T? data, MarketHelperGeneralErrorResponse? error
 });
 
 
@@ -56,20 +56,21 @@ $MarketHelperGeneralErrorResponseCopyWith<$Res>? get error;
 
 }
 /// @nodoc
-class _$MarketHelperGeneralResponseCopyWithImpl<$Res>
-    implements $MarketHelperGeneralResponseCopyWith<$Res> {
+class _$MarketHelperGeneralResponseCopyWithImpl<T,$Res>
+    implements $MarketHelperGeneralResponseCopyWith<T, $Res> {
   _$MarketHelperGeneralResponseCopyWithImpl(this._self, this._then);
 
-  final MarketHelperGeneralResponse _self;
-  final $Res Function(MarketHelperGeneralResponse) _then;
+  final MarketHelperGeneralResponse<T> _self;
+  final $Res Function(MarketHelperGeneralResponse<T>) _then;
 
 /// Create a copy of MarketHelperGeneralResponse
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? message = null,Object? data = null,Object? error = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? message = null,Object? success = null,Object? data = freezed,Object? error = freezed,}) {
   return _then(_self.copyWith(
 message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
-as String,data: null == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
-as Map<String, dynamic>,error: freezed == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as String,success: null == success ? _self.success : success // ignore: cast_nullable_to_non_nullable
+as bool,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
+as T?,error: freezed == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
 as MarketHelperGeneralErrorResponse?,
   ));
 }
@@ -90,7 +91,7 @@ $MarketHelperGeneralErrorResponseCopyWith<$Res>? get error {
 
 
 /// Adds pattern-matching-related methods to [MarketHelperGeneralResponse].
-extension MarketHelperGeneralResponsePatterns on MarketHelperGeneralResponse {
+extension MarketHelperGeneralResponsePatterns<T> on MarketHelperGeneralResponse<T> {
 /// A variant of `map` that fallback to returning `orElse`.
 ///
 /// It is equivalent to doing:
@@ -103,7 +104,7 @@ extension MarketHelperGeneralResponsePatterns on MarketHelperGeneralResponse {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _MarketHelperGeneralResponse value)?  $default,{required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _MarketHelperGeneralResponse<T> value)?  $default,{required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _MarketHelperGeneralResponse() when $default != null:
@@ -125,7 +126,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _MarketHelperGeneralResponse value)  $default,){
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _MarketHelperGeneralResponse<T> value)  $default,){
 final _that = this;
 switch (_that) {
 case _MarketHelperGeneralResponse():
@@ -146,7 +147,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _MarketHelperGeneralResponse value)?  $default,){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _MarketHelperGeneralResponse<T> value)?  $default,){
 final _that = this;
 switch (_that) {
 case _MarketHelperGeneralResponse() when $default != null:
@@ -167,10 +168,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String message,  Map<String, dynamic> data,  MarketHelperGeneralErrorResponse? error)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String message,  bool success,  T? data,  MarketHelperGeneralErrorResponse? error)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _MarketHelperGeneralResponse() when $default != null:
-return $default(_that.message,_that.data,_that.error);case _:
+return $default(_that.message,_that.success,_that.data,_that.error);case _:
   return orElse();
 
 }
@@ -188,10 +189,10 @@ return $default(_that.message,_that.data,_that.error);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String message,  Map<String, dynamic> data,  MarketHelperGeneralErrorResponse? error)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String message,  bool success,  T? data,  MarketHelperGeneralErrorResponse? error)  $default,) {final _that = this;
 switch (_that) {
 case _MarketHelperGeneralResponse():
-return $default(_that.message,_that.data,_that.error);case _:
+return $default(_that.message,_that.success,_that.data,_that.error);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -208,10 +209,10 @@ return $default(_that.message,_that.data,_that.error);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String message,  Map<String, dynamic> data,  MarketHelperGeneralErrorResponse? error)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String message,  bool success,  T? data,  MarketHelperGeneralErrorResponse? error)?  $default,) {final _that = this;
 switch (_that) {
 case _MarketHelperGeneralResponse() when $default != null:
-return $default(_that.message,_that.data,_that.error);case _:
+return $default(_that.message,_that.success,_that.data,_that.error);case _:
   return null;
 
 }
@@ -220,56 +221,51 @@ return $default(_that.message,_that.data,_that.error);case _:
 }
 
 /// @nodoc
+@JsonSerializable(genericArgumentFactories: true)
 
-@JsonSerializable(explicitToJson: true)
-class _MarketHelperGeneralResponse implements MarketHelperGeneralResponse {
-  const _MarketHelperGeneralResponse({required this.message, required final  Map<String, dynamic> data, this.error}): _data = data;
-  factory _MarketHelperGeneralResponse.fromJson(Map<String, dynamic> json) => _$MarketHelperGeneralResponseFromJson(json);
+class _MarketHelperGeneralResponse<T> implements MarketHelperGeneralResponse<T> {
+  const _MarketHelperGeneralResponse({required this.message, required this.success, required this.data, this.error});
+  factory _MarketHelperGeneralResponse.fromJson(Map<String, dynamic> json,T Function(Object?) fromJsonT) => _$MarketHelperGeneralResponseFromJson(json,fromJsonT);
 
 @override final  String message;
- final  Map<String, dynamic> _data;
-@override Map<String, dynamic> get data {
-  if (_data is EqualUnmodifiableMapView) return _data;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableMapView(_data);
-}
-
+@override final  bool success;
+@override final  T? data;
 @override final  MarketHelperGeneralErrorResponse? error;
 
 /// Create a copy of MarketHelperGeneralResponse
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$MarketHelperGeneralResponseCopyWith<_MarketHelperGeneralResponse> get copyWith => __$MarketHelperGeneralResponseCopyWithImpl<_MarketHelperGeneralResponse>(this, _$identity);
+_$MarketHelperGeneralResponseCopyWith<T, _MarketHelperGeneralResponse<T>> get copyWith => __$MarketHelperGeneralResponseCopyWithImpl<T, _MarketHelperGeneralResponse<T>>(this, _$identity);
 
 @override
-Map<String, dynamic> toJson() {
-  return _$MarketHelperGeneralResponseToJson(this, );
+Map<String, dynamic> toJson(Object? Function(T) toJsonT) {
+  return _$MarketHelperGeneralResponseToJson<T>(this, toJsonT);
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MarketHelperGeneralResponse&&(identical(other.message, message) || other.message == message)&&const DeepCollectionEquality().equals(other._data, _data)&&(identical(other.error, error) || other.error == error));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MarketHelperGeneralResponse<T>&&(identical(other.message, message) || other.message == message)&&(identical(other.success, success) || other.success == success)&&const DeepCollectionEquality().equals(other.data, data)&&(identical(other.error, error) || other.error == error));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,message,const DeepCollectionEquality().hash(_data),error);
+int get hashCode => Object.hash(runtimeType,message,success,const DeepCollectionEquality().hash(data),error);
 
 @override
 String toString() {
-  return 'MarketHelperGeneralResponse(message: $message, data: $data, error: $error)';
+  return 'MarketHelperGeneralResponse<$T>(message: $message, success: $success, data: $data, error: $error)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$MarketHelperGeneralResponseCopyWith<$Res> implements $MarketHelperGeneralResponseCopyWith<$Res> {
-  factory _$MarketHelperGeneralResponseCopyWith(_MarketHelperGeneralResponse value, $Res Function(_MarketHelperGeneralResponse) _then) = __$MarketHelperGeneralResponseCopyWithImpl;
+abstract mixin class _$MarketHelperGeneralResponseCopyWith<T,$Res> implements $MarketHelperGeneralResponseCopyWith<T, $Res> {
+  factory _$MarketHelperGeneralResponseCopyWith(_MarketHelperGeneralResponse<T> value, $Res Function(_MarketHelperGeneralResponse<T>) _then) = __$MarketHelperGeneralResponseCopyWithImpl;
 @override @useResult
 $Res call({
- String message, Map<String, dynamic> data, MarketHelperGeneralErrorResponse? error
+ String message, bool success, T? data, MarketHelperGeneralErrorResponse? error
 });
 
 
@@ -277,20 +273,21 @@ $Res call({
 
 }
 /// @nodoc
-class __$MarketHelperGeneralResponseCopyWithImpl<$Res>
-    implements _$MarketHelperGeneralResponseCopyWith<$Res> {
+class __$MarketHelperGeneralResponseCopyWithImpl<T,$Res>
+    implements _$MarketHelperGeneralResponseCopyWith<T, $Res> {
   __$MarketHelperGeneralResponseCopyWithImpl(this._self, this._then);
 
-  final _MarketHelperGeneralResponse _self;
-  final $Res Function(_MarketHelperGeneralResponse) _then;
+  final _MarketHelperGeneralResponse<T> _self;
+  final $Res Function(_MarketHelperGeneralResponse<T>) _then;
 
 /// Create a copy of MarketHelperGeneralResponse
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? message = null,Object? data = null,Object? error = freezed,}) {
-  return _then(_MarketHelperGeneralResponse(
+@override @pragma('vm:prefer-inline') $Res call({Object? message = null,Object? success = null,Object? data = freezed,Object? error = freezed,}) {
+  return _then(_MarketHelperGeneralResponse<T>(
 message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
-as String,data: null == data ? _self._data : data // ignore: cast_nullable_to_non_nullable
-as Map<String, dynamic>,error: freezed == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as String,success: null == success ? _self.success : success // ignore: cast_nullable_to_non_nullable
+as bool,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
+as T?,error: freezed == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
 as MarketHelperGeneralErrorResponse?,
   ));
 }
@@ -314,7 +311,7 @@ $MarketHelperGeneralErrorResponseCopyWith<$Res>? get error {
 /// @nodoc
 mixin _$MarketHelperGeneralErrorResponse {
 
- String get code; String get type; Map<String, dynamic>? get details;
+ int get statusCode; String get type;
 /// Create a copy of MarketHelperGeneralErrorResponse
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -327,16 +324,16 @@ $MarketHelperGeneralErrorResponseCopyWith<MarketHelperGeneralErrorResponse> get 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is MarketHelperGeneralErrorResponse&&(identical(other.code, code) || other.code == code)&&(identical(other.type, type) || other.type == type)&&const DeepCollectionEquality().equals(other.details, details));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MarketHelperGeneralErrorResponse&&(identical(other.statusCode, statusCode) || other.statusCode == statusCode)&&(identical(other.type, type) || other.type == type));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,code,type,const DeepCollectionEquality().hash(details));
+int get hashCode => Object.hash(runtimeType,statusCode,type);
 
 @override
 String toString() {
-  return 'MarketHelperGeneralErrorResponse(code: $code, type: $type, details: $details)';
+  return 'MarketHelperGeneralErrorResponse(statusCode: $statusCode, type: $type)';
 }
 
 
@@ -347,7 +344,7 @@ abstract mixin class $MarketHelperGeneralErrorResponseCopyWith<$Res>  {
   factory $MarketHelperGeneralErrorResponseCopyWith(MarketHelperGeneralErrorResponse value, $Res Function(MarketHelperGeneralErrorResponse) _then) = _$MarketHelperGeneralErrorResponseCopyWithImpl;
 @useResult
 $Res call({
- String code, String type, Map<String, dynamic>? details
+ int statusCode, String type
 });
 
 
@@ -364,12 +361,11 @@ class _$MarketHelperGeneralErrorResponseCopyWithImpl<$Res>
 
 /// Create a copy of MarketHelperGeneralErrorResponse
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? code = null,Object? type = null,Object? details = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? statusCode = null,Object? type = null,}) {
   return _then(_self.copyWith(
-code: null == code ? _self.code : code // ignore: cast_nullable_to_non_nullable
-as String,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
-as String,details: freezed == details ? _self.details : details // ignore: cast_nullable_to_non_nullable
-as Map<String, dynamic>?,
+statusCode: null == statusCode ? _self.statusCode : statusCode // ignore: cast_nullable_to_non_nullable
+as int,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 
@@ -454,10 +450,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String code,  String type,  Map<String, dynamic>? details)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int statusCode,  String type)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _MarketHelperGeneralErrorResponse() when $default != null:
-return $default(_that.code,_that.type,_that.details);case _:
+return $default(_that.statusCode,_that.type);case _:
   return orElse();
 
 }
@@ -475,10 +471,10 @@ return $default(_that.code,_that.type,_that.details);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String code,  String type,  Map<String, dynamic>? details)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int statusCode,  String type)  $default,) {final _that = this;
 switch (_that) {
 case _MarketHelperGeneralErrorResponse():
-return $default(_that.code,_that.type,_that.details);case _:
+return $default(_that.statusCode,_that.type);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -495,10 +491,10 @@ return $default(_that.code,_that.type,_that.details);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String code,  String type,  Map<String, dynamic>? details)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int statusCode,  String type)?  $default,) {final _that = this;
 switch (_that) {
 case _MarketHelperGeneralErrorResponse() when $default != null:
-return $default(_that.code,_that.type,_that.details);case _:
+return $default(_that.statusCode,_that.type);case _:
   return null;
 
 }
@@ -507,23 +503,14 @@ return $default(_that.code,_that.type,_that.details);case _:
 }
 
 /// @nodoc
-
 @JsonSerializable()
+
 class _MarketHelperGeneralErrorResponse implements MarketHelperGeneralErrorResponse {
-  const _MarketHelperGeneralErrorResponse({required this.code, required this.type, final  Map<String, dynamic>? details}): _details = details;
+  const _MarketHelperGeneralErrorResponse({required this.statusCode, required this.type});
   factory _MarketHelperGeneralErrorResponse.fromJson(Map<String, dynamic> json) => _$MarketHelperGeneralErrorResponseFromJson(json);
 
-@override final  String code;
+@override final  int statusCode;
 @override final  String type;
- final  Map<String, dynamic>? _details;
-@override Map<String, dynamic>? get details {
-  final value = _details;
-  if (value == null) return null;
-  if (_details is EqualUnmodifiableMapView) return _details;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableMapView(value);
-}
-
 
 /// Create a copy of MarketHelperGeneralErrorResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -538,16 +525,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MarketHelperGeneralErrorResponse&&(identical(other.code, code) || other.code == code)&&(identical(other.type, type) || other.type == type)&&const DeepCollectionEquality().equals(other._details, _details));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MarketHelperGeneralErrorResponse&&(identical(other.statusCode, statusCode) || other.statusCode == statusCode)&&(identical(other.type, type) || other.type == type));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,code,type,const DeepCollectionEquality().hash(_details));
+int get hashCode => Object.hash(runtimeType,statusCode,type);
 
 @override
 String toString() {
-  return 'MarketHelperGeneralErrorResponse(code: $code, type: $type, details: $details)';
+  return 'MarketHelperGeneralErrorResponse(statusCode: $statusCode, type: $type)';
 }
 
 
@@ -558,7 +545,7 @@ abstract mixin class _$MarketHelperGeneralErrorResponseCopyWith<$Res> implements
   factory _$MarketHelperGeneralErrorResponseCopyWith(_MarketHelperGeneralErrorResponse value, $Res Function(_MarketHelperGeneralErrorResponse) _then) = __$MarketHelperGeneralErrorResponseCopyWithImpl;
 @override @useResult
 $Res call({
- String code, String type, Map<String, dynamic>? details
+ int statusCode, String type
 });
 
 
@@ -575,12 +562,11 @@ class __$MarketHelperGeneralErrorResponseCopyWithImpl<$Res>
 
 /// Create a copy of MarketHelperGeneralErrorResponse
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? code = null,Object? type = null,Object? details = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? statusCode = null,Object? type = null,}) {
   return _then(_MarketHelperGeneralErrorResponse(
-code: null == code ? _self.code : code // ignore: cast_nullable_to_non_nullable
-as String,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
-as String,details: freezed == details ? _self._details : details // ignore: cast_nullable_to_non_nullable
-as Map<String, dynamic>?,
+statusCode: null == statusCode ? _self.statusCode : statusCode // ignore: cast_nullable_to_non_nullable
+as int,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 
